@@ -14,6 +14,7 @@ class WeatherController < ApplicationController
       temperature_min: kelvin_to_celsius(weather_data['main']['temp_min']).round(1),
       temperature_max: kelvin_to_celsius(weather_data['main']['temp_max']).round(1),
       humidity: weather_data['main']['humidity'],
+      datetime: Time.at(weather_data['dt']).strftime('%Y-%m-%d')
     }
   end
 
