@@ -5,7 +5,8 @@
       <p class="text-slate-600">都市名： <%= @weather[:city_name] %></div>
     </div>
 
-    <div class="flex flex-col w-fit justify-center items-center gap-2 px-8 py-4 bg-slate-100 rounded-lg">
+    <div class="flex w-fit justify-center items-center gap-2 px-16 py-4 bg-slate-100 rounded-lg">
+      <div class="flex items-center w-auto"><p class="text-2xl text-slate-800"><%= @weather[:datetime] %></p></div>
       <div class="flex items-center w-auto">天気： <p class="text-2xl"><%= @weather[:weather_description] %></p></div>
       <div class="flex items-center w-auto">気温： <p class="text-2xl"><%= @weather[:temperature] %>℃</p></div>
       <div class="flex items-center w-auto">最低気温： <p class="text-2xl"><%= @weather[:temperature_min] %>℃</p></div>
