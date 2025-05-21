@@ -1,10 +1,7 @@
-require 'httparty'
-
 class WeatherController < ApplicationController
   def index
-    service = WeatherService.new('kawasaki')
+    service = WeatherService.new('tokyo')
     response = service.fetch_weather
-
     weather_data = response.parsed_response
 
     @weather = {
@@ -18,25 +15,7 @@ class WeatherController < ApplicationController
     }
   end
 
-  def search
-  end
-
   def kelvin_to_celsius(kelvin)
     kelvin - 273.15
-  end
-
-end
-
-class WeatherService
-  include HTTParty
-  base_uri 'https://api.openweathermap.org'
-
-  def initialize(city)
-    api_key = ENV['OPENWEATHER_API_KEY']
-    @options = { query: { q: "#{city},jp", appid: api_key, lang: 'ja' } }
-  end
-
-  def fetch_weather
-    self.class.get("/data/2.5/weather", @options)
   end
 end
