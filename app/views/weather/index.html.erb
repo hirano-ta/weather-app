@@ -1,14 +1,16 @@
-<div class="container mx-auto max-w-[960px] min-h-screen my-8 flex flex-col">
+<div class="container mx-auto max-w-[960px] min-h-screen my-8 flex flex-col items-center">
   <div class="flex flex-col items-center justify-center h-full w-full">
-    <h1 class="text-3xl font-bold text-center w-full">top</h1>
+    <div class="my-8 flex flex-col gap-2">
+      <h1 class="text-6xl text-center w-full text-slate-700">東京</h1>
+      <p class="text-slate-600">都市名： <%= @weather[:city_name] %></div>
+    </div>
 
-    <div class="flex flex-col justify-center items-center w-full">
-      <div class="text-2xl font-bold text-red-500">都市名： <%= @weather[:city_name] %></div>
-      <div class="text-2xl font-bold text-red-500">天気： <%= @weather[:weather_description] %></div>
-      <div class="text-2xl font-bold text-red-500">気温： <%= @weather[:temperature] %>℃</div>
-      <div class="text-2xl font-bold">最低気温： <%= @weather[:temperature_min] %>℃</div>
-      <div class="text-2xl font-bold">最高気温： <%= @weather[:temperature_max] %>℃</div>
-      <div class="text-2xl font-bold">湿度： <%= @weather[:humidity] %>%</div>
+    <div class="flex flex-col w-fit justify-center items-center gap-2 px-8 py-4 bg-slate-100 rounded-lg">
+      <div class="flex items-center w-auto">天気： <p class="text-2xl"><%= @weather[:weather_description] %></p></div>
+      <div class="flex items-center w-auto">気温： <p class="text-2xl"><%= @weather[:temperature] %>℃</p></div>
+      <div class="flex items-center w-auto">最低気温： <p class="text-2xl"><%= @weather[:temperature_min] %>℃</p></div>
+      <div class="flex items-center w-auto">最高気温： <p class="text-2xl"><%= @weather[:temperature_max] %>℃</p></div>
+      <div class="flex items-center w-auto">湿度： <p class="text-2xl"><%= @weather[:humidity] %>%</p></div>
     </div>
   </div>
 </div>
