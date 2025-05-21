@@ -9,8 +9,6 @@ ENV RUNTIME_PACKAGES="nodejs tzdata postgresql-dev postgresql git yaml-dev" \
     TZ=Asia/Tokyo \
     RAILS_ENV="development"
 
-RUN echo ${HOME}
-
 WORKDIR ${HOME}
 
 COPY Gemfile* ./

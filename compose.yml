@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: app_development
-    command: sh -c "rm -f tmp/pids/server.pid && bin/dev -b 0.0.0.0"
+    command: sh -c "rm -f tmp/pids/server.pid && bin/dev -b 0.0.0.0 "
     ports:
       - "3000:3000"
     volumes:
