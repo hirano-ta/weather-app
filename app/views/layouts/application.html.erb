@@ -10,9 +10,6 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
@@ -23,7 +20,11 @@
   </head>
 
   <body class="min-h-screen">
-
+      <header class="w-full h-16 bg-slate-100">
+        <div class="flex items-center justify-center h-full">
+          <h1 class="text-2xl font-bold text-slate-700">天気情報アプリ</h1>
+        </div>
+      </header>
       <%= yield %>
   </body>
 </html>
