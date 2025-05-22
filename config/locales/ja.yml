@@ -1,11 +1,8 @@
 ja:
   hello: "こんにちは世界"
 
-  # ▼ バリデーションの「City 都市名は…」を消す
   errors:
-    format: "%{message}"          # 属性名を付けない既定フォーマット :contentReference[oaicite:2]{index=2}
-
-  # ▼ Weather モデル専用のメッセージ例
+    format: "%{message}"
   activemodel:
     attributes:
       weather:

@@ -22,4 +22,4 @@ RUN apk update && \
 
 COPY . .
 
-CMD ["bin/dev"]
+CMD ["bin/dev", "-b", "0.0.0.0", "-p", "${PORT:-10000}"]

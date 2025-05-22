@@ -7,9 +7,9 @@ class Weather
   attr_accessor :city, :weather_data, :error_message
 
   validates :city,
-            presence: { message: "^都市名を入力してください" },
+            presence: { message: "都市名を入力してください" },
             format:   { with: /\A[a-zA-Z\s]+\z/,
-                        message: "^都市名は英字のみで入力してください" }
+                        message: "都市名は英字のみで入力してください" }
 
   def initialize(attributes = {})
     super
