@@ -1,5 +1,4 @@
-<!-- app/views/weather/index.html.erb -->
-<div class="container mx-auto max-w-[960px] min-h-screen my-8 flex flex-col items-center">
+<div class="container mx-auto max-w-[960px] my-4 flex flex-col items-center">
   <div class="mb-4">
     <%= form_with url: weather_search_path, method: :get, local: true do |f| %>
       <div class="flex gap-2">
@@ -21,6 +20,6 @@
       <p>湿度：<%= @weather_data[:humidity] %>%</p>
     </div>
   <% else %>
-    <p class="text-2xl text-slate-700">天気情報が取得できませんでした。</p>
+    <%# <p class="text-2xl text-slate-700">天気情報が取得できませんでした。</p> %>
   <% end %>
 </div>

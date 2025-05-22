@@ -25,6 +25,14 @@
           <h1 class="text-2xl font-bold text-slate-700">天気情報アプリ</h1>
         </div>
       </header>
+      <% if flash[:alert].present? %>
+        <div class="flex justify-center">
+          <div class="bg-red-100 text-red-800 p-3 rounded my-4 w-1/2">
+            <%= flash[:alert] %>
+          </div>
+        </div>
+      <% end %>
+
       <%= yield %>
   </body>
 </html>
