@@ -1,28 +1,26 @@
+<!-- app/views/weather/index.html.erb -->
 <div class="container mx-auto max-w-[960px] min-h-screen my-8 flex flex-col items-center">
-  <div class="flex flex-col items-center justify-center h-full w-full">
-    <div class="my-8 flex flex-col gap-2">
-      <h1 class="text-6xl text-center w-full text-slate-700"><%= @city.capitalize %></h1>
-      <p class="text-slate-600">都市名： <%= @weather[:city_name] %></p>
-    </div>
-
-    <!-- 🌤 フォーム -->
-    <div class="mb-4">
-      <%= form_with url: weather_search_path, method: :get, local: true do |f| %>
-        <div class="flex gap-2">
-          <%= f.label :q, "都市名", class: "sr-only" %>
-          <%= f.text_field :q, placeholder: "例: osaka", class: "border rounded p-2" %>
-          <%= f.submit "検索", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="flex w-fit justify-center items-center gap-3 px-16 py-4 bg-slate-100 rounded-lg">
-      <div class="flex items-center w-auto"><p class="text-2xl text-slate-800"><%= @weather[:datetime] %></p></div>
-      <div class="flex items-center w-auto"><p class="text-sm text-slate-600">天気： </p><p class=""><%= @weather[:weather_description] %></p></div>
-      <div class="flex items-center w-auto"><p class="text-sm text-slate-600">気温： </p><p class=""><%= @weather[:temperature] %>℃</p></div>
-      <div class="flex items-center w-auto"><p class="text-sm text-slate-600">最低気温： </p><p class=""><%= @weather[:temperature_min] %>℃</p></div>
-      <div class="flex items-center w-auto"><p class="text-sm text-slate-600">最高気温： </p><p class=""><%= @weather[:temperature_max] %>℃</p></div>
-      <div class="flex items-center w-auto"><p class="text-sm text-slate-600">湿度： </p><p class=""><%= @weather[:humidity] %>%</p></div>
-    </div>
+  <div class="mb-4">
+    <%= form_with url: weather_search_path, method: :get, local: true do |f| %>
+      <div class="flex gap-2">
+        <%= f.label :q, "都市名", class: "sr-only" %>
+        <%= f.text_field :q, placeholder: "例: osaka", class: "border rounded p-2" %>
+        <%= f.submit "検索", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+      </div>
+    <% end %>
   </div>
+
+  <% if @weather_data.present? %>
+    <h1 class="text-6xl text-slate-700 my-8"><%= @weather_data[:city_name] %></h1>
+    <div class="flex gap-3 px-16 py-4 bg-slate-100 rounded-lg">
+      <p><%= @weather_data[:datetime] %></p>
+      <p>天気：<%= @weather_data[:weather_description] %></p>
+      <p>気温：<%= @weather_data[:temperature] %>℃</p>
+      <p>最低：<%= @weather_data[:temperature_min] %>℃</p>
+      <p>最高：<%= @weather_data[:temperature_max] %>℃</p>
+      <p>湿度：<%= @weather_data[:humidity] %>%</p>
+    </div>
+  <% else %>
+    <p class="text-2xl text-slate-700">天気情報が取得できませんでした。</p>
+  <% end %>
 </div>
