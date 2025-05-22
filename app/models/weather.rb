@@ -38,15 +38,15 @@ class Weather
     @error_message = "天気情報の取得に失敗しました。"
   end
 
-  def parse_response(data)
+  def parse_response(response)
     @weather_data = {
-      city_name:          data["name"],
-      weather_description: data["weather"][0]["description"],
-      temperature:         kelvin_to_celsius(data["main"]["temp"]).round(1),
-      temperature_min:     kelvin_to_celsius(data["main"]["temp_min"]).round(1),
-      temperature_max:     kelvin_to_celsius(data["main"]["temp_max"]).round(1),
-      humidity:            data["main"]["humidity"],
-      datetime:            Time.at(data["dt"]).strftime("%Y-%m-%d")
+      city_name:           response["name"],
+      weather_description: response["weather"][0]["description"],
+      temperature:         kelvin_to_celsius(response["main"]["temp"]).round(1),
+      temperature_min:     kelvin_to_celsius(response["main"]["temp_min"]).round(1),
+      temperature_max:     kelvin_to_celsius(response["main"]["temp_max"]).round(1),
+      humidity:            response["main"]["humidity"],
+      datetime:            Time.at(response["dt"]).strftime("%Y-%m-%d")
     }
   end
 
