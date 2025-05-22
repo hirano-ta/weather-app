@@ -1,0 +1,19 @@
+ja:
+  hello: "こんにちは世界"
+
+  # ▼ バリデーションの「City 都市名は…」を消す
+  errors:
+    format: "%{message}"          # 属性名を付けない既定フォーマット :contentReference[oaicite:2]{index=2}
+
+  # ▼ Weather モデル専用のメッセージ例
+  activemodel:
+    attributes:
+      weather:
+        city: "都市名"
+    errors:
+      models:
+        weather:
+          attributes:
+            city:
+              blank:   "都市名を入力してください"
+              invalid: "都市名は英字のみで入力してください"
