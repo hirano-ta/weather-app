@@ -1,4 +1,3 @@
-# app/controllers/weather_controller.rb
 class WeatherController < ApplicationController
   def index
     weather = Weather.new(city: "tokyo")

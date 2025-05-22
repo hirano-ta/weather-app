@@ -1,4 +1,3 @@
-# app/models/weather.rb
 class Weather
   include ActiveModel::Model
   include HTTParty
@@ -8,9 +7,9 @@ class Weather
   attr_accessor :city, :weather_data, :error_message
 
   validates :city,
-            presence: { message: "都市名を入力してください" },
+            presence: { message: "^都市名を入力してください" },
             format:   { with: /\A[a-zA-Z\s]+\z/,
-                        message: "都市名は英字のみで入力してください" }
+                        message: "^都市名は英字のみで入力してください" }
 
   def initialize(attributes = {})
     super
@@ -52,7 +51,7 @@ class Weather
   end
 
   def build_error_from_validation
-    @error_message = errors.full_messages.join(", ")
+    @error_message = errors.full_messages.join(", ") 
   end
 
   def kelvin_to_celsius(kelvin)
