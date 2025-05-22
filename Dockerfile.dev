@@ -2,7 +2,7 @@ FROM ruby:3.2.8-alpine
 
 ARG WORKDIR=/app
 
-ENV RUNTIME_PACKAGES="nodejs tzdata postgresql-dev postgresql git yaml-dev" \
+ENV RUNTIME_PACKAGES="nodejs npm tzdata postgresql-dev postgresql git yaml-dev" \
     DEV_PACKAGES="build-base curl-dev" \
     HOME=/${WORKDIR} \
     LANG=C.UTF-8 \
@@ -22,5 +22,5 @@ RUN apk update && \
 
 COPY . .
 
-CMD bundle exec rails server -b 0.0.0.0 -p ${PORT:-10000}
+CMD rails tailwindcss:build && bundle exec rails server -b 0.0.0.0 -p ${PORT:-10000}
 
