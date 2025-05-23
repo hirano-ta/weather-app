@@ -2,25 +2,23 @@ FROM ruby:3.2.8-alpine
 
 ARG WORKDIR=/app
 
-ENV RUNTIME_PACKAGES="nodejs npm tzdata postgresql-dev postgresql git yaml-dev" \
-    DEV_PACKAGES="build-base curl-dev" \
-    HOME=/${WORKDIR} \
+ENV RUNTIME_PACKAGES="tzdata postgresql-dev yarn git yaml-dev" \
+    DEV_PACKAGES="build-base" \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo \
-    RAILS_ENV="production"
+    RAILS_ENV=production
 
-WORKDIR ${HOME}
+WORKDIR ${WORKDIR}
 
-COPY Gemfile* ./
+COPY Gemfile Gemfile.lock ./
 
-RUN apk update && \
-    apk upgrade && \
-    apk add --no-cache ${RUNTIME_PACKAGES} && \
-    apk add --virtual build-dependencies --no-cache ${DEV_PACKAGES} && \
+RUN apk add --no-cache ${RUNTIME_PACKAGES} && \
+    apk add --no-cache --virtual build-deps ${DEV_PACKAGES} && \
     bundle install -j4 && \
-    apk del build-dependencies
+    apk del build-deps
 
 COPY . .
 
-CMD rails tailwindcss:build && bundle exec rails server -b 0.0.0.0 -p ${PORT:-10000}
+RUN bundle exec rails assets:precompile
 
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "10000"]

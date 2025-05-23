@@ -2,25 +2,22 @@ FROM ruby:3.2.8-alpine
 
 ARG WORKDIR=/app
 
-ENV RUNTIME_PACKAGES="nodejs npm tzdata postgresql-dev postgresql git yaml-dev" \
-    DEV_PACKAGES="build-base curl-dev" \
-    HOME=/${WORKDIR} \
-    LANG=C.UTF-8 \
-    TZ=Asia/Tokyo \
-    RAILS_ENV="development"
+ENV RUNTIME_PACKAGES="nodejs npm tzdata yarn postgresql-dev git yaml-dev" \
+DEV_PACKAGES="build-base" \
+LANG=C.UTF-8 \
+TZ=Asia/Tokyo \
+RAILS_ENV=development
 
-WORKDIR ${HOME}
+WORKDIR ${WORKDIR}
 
-COPY Gemfile* ./
+COPY Gemfile Gemfile.lock ./
 
-RUN apk update && \
-    apk upgrade && \
-    apk add --no-cache ${RUNTIME_PACKAGES} && \
-    apk add --virtual build-dependencies --no-cache ${DEV_PACKAGES} && \
-    bundle install -j4 && \
-    apk del build-dependencies
+RUN apk add --no-cache ${RUNTIME_PACKAGES} && \
+apk add --no-cache --virtual build-deps ${DEV_PACKAGES} && \
+bundle install -j4 && \
+npm install -g npm && \
+apk del build-deps
 
 COPY . .
 
-CMD rails tailwindcss:build && bundle exec rails server -b 0.0.0.0 -p ${PORT:-10000}
-
+CMD ["sh", "-c", "rm -f tmp/pids/server.pid && ./bin/dev"]

@@ -1,2 +1,2 @@
-web: bin/rails server
-css: bin/rails tailwindcss:watch && tailwindcss: build
+web: bin/rails server -b 0.0.0.0 -p ${PORT:-10000}
+css: bin/rails tailwindcss:watch

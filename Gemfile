@@ -66,8 +66,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem "tailwindcss-rails", "~> 3.3"
 
-gem "cssbundling-rails", "~> 1.4"
-
 gem "tailwindcss-ruby", "~> 3.4"
 
 gem 'httparty'
